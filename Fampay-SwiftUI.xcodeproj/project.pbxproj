@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,11 @@
 		B6838469286B3A9800302098 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838468286B3A9800302098 /* DataModel.swift */; };
 		B683846C286B3BB200302098 /* DataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683846B286B3BB200302098 /* DataViewModel.swift */; };
 		B683846F286B3BF600302098 /* CardGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683846E286B3BF600302098 /* CardGroupView.swift */; };
+		B6838472286B47CC00302098 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B6838471286B47CC00302098 /* SDWebImageSwiftUI */; };
+		B6838475286B76F600302098 /* HexCodeToColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838474286B76F600302098 /* HexCodeToColor.swift */; };
+		B69F0CAC286B83F300D77A48 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */; };
+		B69F0CAE286B840200D77A48 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */; };
+		B69F0CB0286B842200D77A48 /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B69F0CAF286B842200D77A48 /* Metropolis-SemiBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,10 @@
 		B6838468286B3A9800302098 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		B683846B286B3BB200302098 /* DataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewModel.swift; sourceTree = "<group>"; };
 		B683846E286B3BF600302098 /* CardGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGroupView.swift; sourceTree = "<group>"; };
+		B6838474286B76F600302098 /* HexCodeToColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeToColor.swift; sourceTree = "<group>"; };
+		B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		B69F0CAF286B842200D77A48 /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6838472286B47CC00302098 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +77,8 @@
 				B683846A286B3BA100302098 /* ViewModel */,
 				B683846D286B3BDA00302098 /* Views */,
 				B6838467286B3A8700302098 /* Model */,
+				B69F0CAA286B83D100D77A48 /* Fonts */,
+				B6838473286B76D800302098 /* Extensions */,
 				ADAAB7FB232541B1006325FC /* Assets.xcassets */,
 				ADAAB800232541B1006325FC /* LaunchScreen.storyboard */,
 				ADAAB803232541B1006325FC /* Info.plist */,
@@ -108,6 +120,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B6838473286B76D800302098 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6838474286B76F600302098 /* HexCodeToColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B69F0CAA286B83D100D77A48 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */,
+				B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */,
+				B69F0CAF286B842200D77A48 /* Metropolis-SemiBold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,6 +154,9 @@
 			dependencies = (
 			);
 			name = "Fampay-SwiftUI";
+			packageProductDependencies = (
+				B6838471286B47CC00302098 /* SDWebImageSwiftUI */,
+			);
 			productName = "Dicee-SwiftUI";
 			productReference = ADAAB7F2232541AF006325FC /* Fampay-SwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -152,6 +185,9 @@
 				Base,
 			);
 			mainGroup = ADAAB7E9232541AF006325FC;
+			packageReferences = (
+				B6838470286B47CC00302098 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = ADAAB7F3232541AF006325FC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -166,8 +202,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B69F0CAC286B83F300D77A48 /* Roboto-Medium.ttf in Resources */,
 				ADAAB802232541B1006325FC /* LaunchScreen.storyboard in Resources */,
+				B69F0CAE286B840200D77A48 /* Roboto-Regular.ttf in Resources */,
 				ADAAB7FF232541B1006325FC /* Preview Assets.xcassets in Resources */,
+				B69F0CB0286B842200D77A48 /* Metropolis-SemiBold.otf in Resources */,
 				ADAAB7FC232541B1006325FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +224,7 @@
 				ADAAB7F8232541AF006325FC /* SceneDelegate.swift in Sources */,
 				ADAAB7FA232541B0006325FC /* ContentView.swift in Sources */,
 				B683846C286B3BB200302098 /* DataViewModel.swift in Sources */,
+				B6838475286B76F600302098 /* HexCodeToColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +420,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B6838470286B47CC00302098 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B6838471286B47CC00302098 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6838470286B47CC00302098 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ADAAB7EA232541AF006325FC /* Project object */;
 }

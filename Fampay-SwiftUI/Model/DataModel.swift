@@ -20,6 +20,7 @@ struct CardData: Codable {
 
 //MARK: - CardGroup
 struct CardGroup: Codable, Identifiable {
+    let uniqueId = UUID()
     let id: Int
     let name, designType: String
     let cards: [Card]
@@ -62,7 +63,8 @@ struct Card: Codable, Identifiable {
 }
 
 //MARK: - CTA
-struct CTA: Codable {
+struct CTA: Codable, Identifiable {
+    let id = UUID()
     let text, bgColor, textColor: String?
     let url: String?
 

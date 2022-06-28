@@ -37,6 +37,7 @@ class DataViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] (returnedCardData) in
                 self?.cards = returnedCardData.cardGroups
+                print(self!.cards)
             }
             .store(in: &cancellables)
     }
