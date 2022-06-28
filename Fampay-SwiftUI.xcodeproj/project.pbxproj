@@ -13,6 +13,7 @@
 		ADAAB7FC232541B1006325FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAAB7FB232541B1006325FC /* Assets.xcassets */; };
 		ADAAB7FF232541B1006325FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAAB7FE232541B1006325FC /* Preview Assets.xcassets */; };
 		ADAAB802232541B1006325FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAAB800232541B1006325FC /* LaunchScreen.storyboard */; };
+		B6838469286B3A9800302098 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838468286B3A9800302098 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		ADAAB7FE232541B1006325FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ADAAB801232541B1006325FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADAAB803232541B1006325FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6838468286B3A9800302098 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				ADAAB7F5232541AF006325FC /* AppDelegate.swift */,
 				ADAAB7F7232541AF006325FC /* SceneDelegate.swift */,
 				ADAAB7F9232541B0006325FC /* ContentView.swift */,
+				B6838467286B3A8700302098 /* Model */,
 				ADAAB7FB232541B1006325FC /* Assets.xcassets */,
 				ADAAB800232541B1006325FC /* LaunchScreen.storyboard */,
 				ADAAB803232541B1006325FC /* Info.plist */,
@@ -73,6 +76,14 @@
 				ADAAB7FE232541B1006325FC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B6838467286B3A8700302098 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B6838468286B3A9800302098 /* DataModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,7 +114,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1330;
-				ORGANIZATIONNAME = "Angela Yu";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					ADAAB7F1232541AF006325FC = {
 						CreatedOnToolsVersion = 11.0;
@@ -147,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADAAB7F6232541AF006325FC /* AppDelegate.swift in Sources */,
+				B6838469286B3A9800302098 /* DataModel.swift in Sources */,
 				ADAAB7F8232541AF006325FC /* SceneDelegate.swift in Sources */,
 				ADAAB7FA232541B0006325FC /* ContentView.swift in Sources */,
 			);
