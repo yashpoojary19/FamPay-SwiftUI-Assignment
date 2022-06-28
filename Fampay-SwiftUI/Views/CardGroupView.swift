@@ -13,6 +13,7 @@ struct CardGroupView: View {
     
     @StateObject var viewModel = DataViewModel()
     
+    let width: CGFloat = UIScreen.main.bounds.width
     
     var body: some View {
         VStack(spacing: 15) {
@@ -24,9 +25,7 @@ struct CardGroupView: View {
                     
                     
                     ForEach(cardGroup.cards) { card in
-                        
-                        
-                        
+
                         
                         if cardGroup.designType == "HC3" {
                             ZStack(alignment: .bottom) {
@@ -114,6 +113,107 @@ struct CardGroupView: View {
                             
                         }
                         
+                        
+                        
+                    }
+                    
+                    
+                        
+                        
+                        if cardGroup.designType == "HC5" {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 15) {
+                                ForEach(cardGroup.cards) { card in
+                         
+                                    WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
+                                        .resizable()
+                                        .placeholder {
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .frame(maxWidth: .infinity)
+                                                .foregroundColor(Color(hex: card.bgColor ?? "#FFF00"))
+                                            
+                                        }
+                                        .frame(height: 129)
+                                        .frame(maxWidth: .infinity)
+                                        .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
+                                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                                }
+                               
+                            }
+                                
+                            }
+                            
+                        }
+                    
+                    
+                    if cardGroup.designType == "HC9" {
+                  
+                            HStack(spacing: 15) {
+                            ForEach(cardGroup.cards) { card in
+                     
+                                WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
+                                    .resizable()
+                                    .placeholder {
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .frame(maxWidth: .infinity)
+                                            .foregroundColor(Color(hex: card.bgColor ?? "#FFF00"))
+                                        
+                                    }
+//                                    .frame(height: CGFloat(card.height ?? 78))
+                                    .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
+                                
+//                                    .frame(height: CGFloat(cardGroup?.height ?? 78))
+////
+                                   
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                            }
+                           
+                        }
+                        
+                        
+                    }
+                        
+                  
+                    if cardGroup.designType == "HC1"  {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 15) {
+                            ForEach(cardGroup.cards) { card in
+                                
+                                
+                                ZStack {
+                                    
+                                    Color(hex: card.bgColor ?? "F7F6F3").clipShape(RoundedRectangle(cornerRadius: 12))
+                                  
+                                    
+                                    HStack {
+                                        WebImage(url: URL(string: card.icon?.imageURL ?? ""))
+                                            .resizable()
+                                            .placeholder {
+                                                RoundedRectangle(cornerRadius: 12)
+                                                    .frame(maxWidth: .infinity)
+                                                    .foregroundColor(Color(hex: card.bgColor ?? "#FFF00"))
+                                                
+                                            }
+                                            .frame(height: 36)
+                                            .frame(maxWidth: .infinity)
+                                            .aspectRatio(CGFloat(card.icon?.aspectRatio ?? 1), contentMode: .fit)
+                                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                                        
+                                        Text((card.formattedTitle?.text) ?? "")
+                                            .font(Font.custom("Roboto-Medium", size: 14))
+                                    }
+                                    .padding()
+                                }
+                                
+                              
+                     
+                               
+                            }
+                           
+                        }
+                            
+                        }
+                        
                     }
                     
                 }
@@ -121,7 +221,7 @@ struct CardGroupView: View {
             }
         }
         .padding(.horizontal, 15)
-        .background(Color(hex: "#F7F6F3").edgesIgnoringSafeArea(.all))
+        .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
     }
     
 }
