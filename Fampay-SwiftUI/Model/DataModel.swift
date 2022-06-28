@@ -36,7 +36,8 @@ struct CardGroup: Codable, Identifiable {
 }
 
 //MARK: - Card
-struct Card: Codable {
+struct Card: Codable, Identifiable {
+    let id = UUID()
     let name: String?
     let title: String?
     let formattedTitle: FormattedTitle?
