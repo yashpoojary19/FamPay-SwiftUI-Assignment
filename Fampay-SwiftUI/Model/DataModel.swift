@@ -22,7 +22,8 @@ struct CardData: Codable {
 struct CardGroup: Codable, Identifiable {
     let uniqueId = UUID()
     let id: Int
-    let name, designType: String
+    let name: String
+    let designType: DesignType
     let cards: [Card]
     let isScrollable: Bool
     let height: Int?
@@ -110,4 +111,14 @@ struct FormattedDescription: Codable {
 struct FormattedTitle: Codable {
     let text: String
     let entities: [Entity]
+}
+
+//MARK: - DesignType
+enum DesignType: String, Codable {
+    case smallDisplayCard = "HC1"
+    case bigDisplayCard = "HC3"
+    case imageCard = "HC5"
+    case smallCardWithArrow = "HC6"
+    case dynamicWidthCard = "HC9"
+            
 }

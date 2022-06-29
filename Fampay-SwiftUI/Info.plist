@@ -24,7 +24,6 @@
 	<array>
 		<string>Roboto-Regular.ttf</string>
 		<string>Roboto-Medium.ttf</string>
-		<string>Metropolis-SemiBold.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

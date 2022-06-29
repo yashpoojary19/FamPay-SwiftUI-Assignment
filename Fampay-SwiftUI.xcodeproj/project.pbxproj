@@ -21,7 +21,6 @@
 		B6838475286B76F600302098 /* HexCodeToColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838474286B76F600302098 /* HexCodeToColor.swift */; };
 		B69F0CAC286B83F300D77A48 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */; };
 		B69F0CAE286B840200D77A48 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */; };
-		B69F0CB0286B842200D77A48 /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B69F0CAF286B842200D77A48 /* Metropolis-SemiBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +39,6 @@
 		B6838474286B76F600302098 /* HexCodeToColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeToColor.swift; sourceTree = "<group>"; };
 		B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		B69F0CAF286B842200D77A48 /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +142,6 @@
 			children = (
 				B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */,
 				B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */,
-				B69F0CAF286B842200D77A48 /* Metropolis-SemiBold.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -217,7 +214,6 @@
 				ADAAB802232541B1006325FC /* LaunchScreen.storyboard in Resources */,
 				B69F0CAE286B840200D77A48 /* Roboto-Regular.ttf in Resources */,
 				ADAAB7FF232541B1006325FC /* Preview Assets.xcassets in Resources */,
-				B69F0CB0286B842200D77A48 /* Metropolis-SemiBold.otf in Resources */,
 				ADAAB7FC232541B1006325FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
