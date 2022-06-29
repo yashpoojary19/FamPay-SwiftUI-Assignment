@@ -23,19 +23,24 @@ struct CardGroupView: View {
         VStack(spacing: 15) {
             
             ScrollView(.vertical, showsIndicators: false) {
-                    
-              
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 15) {
-                        ForEach(mergeArray(cardGroup: viewModel.cards, designType: "HC3")) { card in
-                            HC3(card: card)
-                        }
-                        
-                        
-                    }
-                    
-                }
                 
+                PullToRefresh(coordinateSpaceName: "pullToRefresh") {
+                                    viewModel.getCards()
+                               
+                                }
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                                         HStack(spacing: 15) {
+                                             ForEach(mergeArray(cardGroup: viewModel.cards, designType: "HC3")) { card in
+                                                 HC3(card: card)
+                                             }
+             
+             
+                                         }
+             
+                                     }
+                
+            
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
                         ForEach(mergeArray(cardGroup: viewModel.cards, designType: "HC6")) { card in
@@ -99,8 +104,7 @@ struct CardGroupView: View {
                         
                     }
                     .indicator(.activity)
-                    
-                
+                   
                 VStack(alignment: .leading, spacing: 30) {
                     //
                     Text((card.formattedTitle?.text) ?? "")
@@ -125,6 +129,8 @@ struct CardGroupView: View {
                     .background(Color.black)
                     .clipShape(RoundedRectangle(cornerRadius: 6))
                 }
+               
+                
                 .padding(.bottom, 20)
                 
 //                .padding(.horizontal)
@@ -135,10 +141,13 @@ struct CardGroupView: View {
                 
                 
             }
+    
             .frame(height: 350)
-            .frame(maxWidth: .infinity)
             .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
-
+            
+         
+    
+           
             
         }
         
@@ -184,6 +193,7 @@ struct CardGroupView: View {
                     Image(systemName: "chevron.right")
                     
                 }
+                .frame(maxWidth: .infinity)
                 .padding()
                 
             }
@@ -277,3 +287,21 @@ struct CardGroupView_Previews: PreviewProvider {
     }
 }
 
+
+struct ConditionalScrollView<Content: View>: View {
+    @Binding private var isVisible: Bool
+    private var builtContent: Content
+
+    init(isVisible: Binding<Bool>, content: () -> Content) {
+        self._isVisible = isVisible
+        builtContent = content()
+    }
+
+    var body: some View {
+        if isVisible {
+            ScrollView(.horizontal, showsIndicators: false) { builtContent }
+        } else {
+            builtContent
+        }
+    }
+}
