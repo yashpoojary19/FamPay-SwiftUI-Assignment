@@ -14,6 +14,7 @@
 		ADAAB7FF232541B1006325FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAAB7FE232541B1006325FC /* Preview Assets.xcassets */; };
 		ADAAB802232541B1006325FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAAB800232541B1006325FC /* LaunchScreen.storyboard */; };
 		B64633AE286C3CC1005B6C61 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64633AD286C3CC1005B6C61 /* PullToRefresh.swift */; };
+		B64633B0286C7828005B6C61 /* ConditionalScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64633AF286C7828005B6C61 /* ConditionalScrollView.swift */; };
 		B6838469286B3A9800302098 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838468286B3A9800302098 /* DataModel.swift */; };
 		B683846C286B3BB200302098 /* DataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683846B286B3BB200302098 /* DataViewModel.swift */; };
 		B683846F286B3BF600302098 /* CardGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683846E286B3BF600302098 /* CardGroupView.swift */; };
@@ -33,6 +34,7 @@
 		ADAAB801232541B1006325FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADAAB803232541B1006325FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B64633AD286C3CC1005B6C61 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
+		B64633AF286C7828005B6C61 /* ConditionalScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalScrollView.swift; sourceTree = "<group>"; };
 		B6838468286B3A9800302098 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		B683846B286B3BB200302098 /* DataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewModel.swift; sourceTree = "<group>"; };
 		B683846E286B3BF600302098 /* CardGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGroupView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				B64633AD286C3CC1005B6C61 /* PullToRefresh.swift */,
+				B64633AF286C7828005B6C61 /* ConditionalScrollView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				ADAAB7F6232541AF006325FC /* AppDelegate.swift in Sources */,
 				B6838469286B3A9800302098 /* DataModel.swift in Sources */,
 				B683846F286B3BF600302098 /* CardGroupView.swift in Sources */,
+				B64633B0286C7828005B6C61 /* ConditionalScrollView.swift in Sources */,
 				ADAAB7F8232541AF006325FC /* SceneDelegate.swift in Sources */,
 				ADAAB7FA232541B0006325FC /* ContentView.swift in Sources */,
 				B64633AE286C3CC1005B6C61 /* PullToRefresh.swift in Sources */,

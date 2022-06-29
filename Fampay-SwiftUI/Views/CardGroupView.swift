@@ -15,6 +15,7 @@ struct CardGroupView: View {
     
     @StateObject var viewModel = DataViewModel()
     
+    
     let width: CGFloat = UIScreen.main.bounds.width
     
     var body: some View {
@@ -126,15 +127,15 @@ struct CardGroupView: View {
                 
                 
                 Button(action: {
-                    //
+                    UIApplication.shared.open(URL(string: card.cta?.first?.url ?? "https://fampay.in/")!)
                 }) {
-                    Text("Add")
+                    Text(card.cta?.first?.text ?? "Action")
                         .font(Font.custom("Roboto-Medium", size: 14))
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color(hex: card.cta?.first?.textColor ?? "#FFFFFF"))
                         .padding()
                         .padding(.horizontal)
                 }
-                .background(Color.black)
+                .background(Color(hex: card.cta?.first?.bgColor ?? "#000000"))
                 .clipShape(RoundedRectangle(cornerRadius: 6))
             }
             
@@ -146,10 +147,9 @@ struct CardGroupView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 350)
         .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
-        
-        
-        
-        
+        .onTapGesture() {
+            UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
+        }
         
     }
     
@@ -166,6 +166,9 @@ struct CardGroupView: View {
             .frame(maxWidth: .infinity)
             .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
             .clipShape(RoundedRectangle(cornerRadius: 12))
+            .onTapGesture() {
+                UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
+            }
     }
     
     
@@ -193,10 +196,15 @@ struct CardGroupView: View {
                 Spacer()
                 
                 Image(systemName: "chevron.right")
+                   
                 
             }
             .frame(maxWidth: .infinity)
             .padding()
+            .contentShape( Rectangle() )
+            .onTapGesture() {
+                UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
+            }
             
         }
     }
@@ -261,38 +269,5 @@ struct CardGroupView_Previews: PreviewProvider {
 }
 
 
-struct ConditionalScrollView<Content: View>: View {
-    private var isVisible: Bool
-    private var cardGroup: CardGroup
-    private var builtContent: Content
-    
-    
-    init(isVisible: Bool, cardGroup: CardGroup, content: () -> Content) {
-        self.isVisible = isVisible
-        self.cardGroup = cardGroup
-        builtContent = content()
-    }
-    
-    var body: some View {
-        if isVisible {
-            
-            if cardGroup.cards.count > 0 {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 15) {
-                        builtContent
-                    }
-                    .padding(.trailing, 15)
-                }
-            }
-          
-           
-        } else {
-            HStack(spacing: 15) {
-                builtContent
-            }
-            .padding(.trailing, 15)
-        }
-    }
-}
 
 
