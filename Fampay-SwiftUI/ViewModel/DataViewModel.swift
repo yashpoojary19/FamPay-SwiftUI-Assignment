@@ -27,17 +27,21 @@ class DataViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .tryMap(handleOutput)
             .decode(type: CardData.self, decoder: JSONDecoder())
+        
             .sink { (completion) in
                 switch completion {
                 case .finished:
+    
                     print("Finished")
                 case .failure(let error):
                     print("There was an error. \(error)")
                     // error handling
                 }
             } receiveValue: { [weak self] (returnedCardData) in
+                    
+                
                 self?.cards = returnedCardData.cardGroups
-                print(self!.cards)
+                
             }
             .store(in: &cancellables)
     }
@@ -48,5 +52,27 @@ class DataViewModel: ObservableObject {
         }
         
         return output.data
+        
+        
     }
+    
+//    func stringify(json: Any, prettyPrinted: Bool = false) -> String {
+//       var options: JSONSerialization.WritingOptions = []
+//       if prettyPrinted {
+//         options = JSONSerialization.WritingOptions.prettyPrinted
+//       }
+//
+//       do {
+//         let data = try JSONSerialization.data(withJSONObject: json, options: options)
+//         if let string = String(data: data, encoding: String.Encoding.utf8) {
+//           return string
+//         }
+//       } catch {
+//         print(error)
+//       }
+//
+//       return ""
+//   }
 }
+
+
