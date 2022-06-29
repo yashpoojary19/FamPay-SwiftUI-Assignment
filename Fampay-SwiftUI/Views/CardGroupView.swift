@@ -43,7 +43,9 @@ struct CardGroupView: View {
                                 ForEach(cardGroup.cards) { card in
                                     
                                     HC3(card: card)
+                                       
                                 }
+                                
                                 
                                 
                                 
@@ -78,7 +80,7 @@ struct CardGroupView: View {
                             .frame(maxWidth: .infinity)
                         }
                         .padding(.trailing, 15)
- 
+                        
                     } else if cardGroup.designType == DesignType.smallDisplayCard {
                         
                         ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
@@ -86,12 +88,12 @@ struct CardGroupView: View {
                                 HC1(card: card)
                             }
                         }
-
+                        
                     }
-
+                    
                 }
             }
-
+            
         }
         .onDisappear {
             if userSettings.cardOptionState == CardOptionState.remindLater.rawValue {
@@ -111,57 +113,76 @@ struct CardGroupView: View {
         ZStack {
             
             Color.white.clipShape(RoundedRectangle(cornerRadius: 12))
-        
+            
             ZStack(alignment: .leading) {
-            
-            cardOptionsView()
-
-            
-//
-            
-            ZStack(alignment: .bottom) {
-                WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
-                    .resizable()
-                    .placeholder {
-                        RoundedRectangle(cornerRadius: 12)
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(Color(hex: card.bgColor ?? "#FFF00"))
+                
+                cardOptionsView()
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation(.easeIn(duration: 0.5)) {
+                            showCardOptions = false
+                        }
                         
                     }
-                    .indicator(.activity)
                 
                 
                 
-                VStack(alignment: .leading, spacing: 30) {
-                    //
-                    Text((card.formattedTitle?.text) ?? "")
-                        .font(Font.custom("Roboto-Medium", size: 30))
-                        .lineLimit(2)
+                //
+                
+                ZStack(alignment: .bottom) {
+                    WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
+                        .resizable()
+                        .placeholder {
+                            RoundedRectangle(cornerRadius: 12)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(Color(hex: card.bgColor ?? "#FFF00"))
+                            
+                        }
+                        .indicator(.activity)
                     
-                    Text((card.formattedDescription?.text) ?? "")
-                        .font(Font.custom("Roboto-Regular", size: 12))
-                        .lineLimit(2)
                     
-                    Button(action: {
-
-                    }) {
-                        Text(card.cta?.first?.text ?? "Action")
-                            .font(Font.custom("Roboto-Medium", size: 14))
-                            .foregroundColor(Color(hex: card.cta?.first?.textColor ?? "#FFFFFF"))
-                            .padding()
-                            .padding(.horizontal)
+                    
+                    VStack(alignment: .leading, spacing: 30) {
+                        //
+                        Text((card.formattedTitle?.text) ?? "")
+                            .font(Font.custom("Roboto-Medium", size: 30))
+                            .lineLimit(2)
+                        
+                        Text((card.formattedDescription?.text) ?? "")
+                            .font(Font.custom("Roboto-Regular", size: 12))
+                            .lineLimit(2)
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Text(card.cta?.first?.text ?? "Action")
+                                .font(Font.custom("Roboto-Medium", size: 14))
+                                .foregroundColor(Color(hex: card.cta?.first?.textColor ?? "#FFFFFF"))
+                                .padding()
+                                .padding(.horizontal)
+                        }
+                        .background(Color(hex: card.cta?.first?.bgColor ?? "#000000"))
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
                     }
-                    .background(Color(hex: card.cta?.first?.bgColor ?? "#000000"))
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                    .padding(.horizontal)
+                    .padding(.bottom, 20)
                 }
-                .padding(.horizontal)
-                .padding(.bottom, 20)
-                }
-                .offset(x: showCardOptions ? 100 : 0, y: 0)
+                .offset(x: showCardOptions ? (width / 3) : 0, y: 0)
             }
             
         }
         .clipped()
+        .onTapGesture() {
+            
+            if showCardOptions {
+                withAnimation(.easeIn(duration: 0.5)) {
+                    showCardOptions = false
+                }
+            } else {
+                tapOnLinkAction(card.url ?? "https://fampay.in/")
+            }
+
+        }
         
         .onLongPressGesture {
             withAnimation {
@@ -169,13 +190,10 @@ struct CardGroupView: View {
             }
             
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 350)
+        .frame(width: width - 20)
         .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
-        .onTapGesture() {
-            tapOnLinkAction(card.url ?? "https://fampay.in/")
-
-        }
+        .contentShape(Rectangle())
+       
         
     }
     
@@ -188,13 +206,13 @@ struct CardGroupView: View {
                     .foregroundColor(Color(hex: card.bgColor ?? "#FFF00"))
                 
             }
-            .frame(height: 129)
             .frame(maxWidth: .infinity)
             .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .onTapGesture() {
                 tapOnLinkAction(card.url ?? "https://fampay.in/")
             }
+            .frame(width: width - 20)
     }
     
     
@@ -229,7 +247,7 @@ struct CardGroupView: View {
             .contentShape( Rectangle() )
             .onTapGesture() {
                 tapOnLinkAction(card.url ?? "https://fampay.in/")
-
+                
             }
             
         }
@@ -249,9 +267,8 @@ struct CardGroupView: View {
                 .onTapGesture {
                     tapOnLinkAction(card.url ?? "https://fampay.in/")
                 }
-                .aspectRatio(contentMode: .fill)
                 .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
-//                .clipped()
+      
             
         }
     }
@@ -264,6 +281,7 @@ struct CardGroupView: View {
             ZStack {
                 
                 Color(hex: card.bgColor ?? "#FFFFFF").clipShape(RoundedRectangle(cornerRadius: 12))
+                
                 
                 HStack {
                     WebImage(url: URL(string: card.icon?.imageURL ?? ""))
@@ -290,7 +308,7 @@ struct CardGroupView: View {
             
             
         }
-       
+        
         
     }
     
@@ -338,9 +356,11 @@ struct CardGroupView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 
             }
+        
         }
-        .frame(width: 100)
-
+        .frame(width: width / 3)
+        
+        
     }
     
 }

@@ -19,6 +19,7 @@ class UserSettings: ObservableObject {
     init() {
         self.cardOptionState = UserDefaults.standard.object(forKey: "cardOptionSettings") as? String ?? "none"
         
+        
         if cardOptionState == CardOptionState.remindLater.rawValue {
             cardOptionState = CardOptionState.none.rawValue
         }

@@ -29,8 +29,9 @@ struct ConditionalScrollView<Content: View>: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
                         builtContent
+                            
                     }
-                    .frame(maxWidth: .infinity)
+                    
                     .padding(.trailing, 15)
                 }
                
