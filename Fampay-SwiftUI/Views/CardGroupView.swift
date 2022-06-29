@@ -14,7 +14,9 @@ import SDWebImageSwiftUI
 struct CardGroupView: View {
     
     @StateObject var viewModel = DataViewModel()
+    @State private var showCardOptions = false
     
+    @ObservedObject var userSettings = UserSettings()
     
     let width: CGFloat = UIScreen.main.bounds.width
     
@@ -33,15 +35,21 @@ struct CardGroupView: View {
                 ForEach(viewModel.cards, id: \.uniqueId) { cardGroup in
                     
                   
-                    
+              
                     if cardGroup.designType == DesignType.bigDisplayCard {
-                        
+                        if userSettings.cardOptionState == CardOptionState.none.rawValue  {
                         ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
+                            
+                      
                                 ForEach(cardGroup.cards) { card in
-                                    HC3(card: card)
+                                    
+                                        HC3(card: card)
                                 }
+                          
+                               
+                               
                         }
-                 
+                        }
                         
                     } else if cardGroup.designType == DesignType.smallCardWithArrow {
                         
@@ -93,15 +101,25 @@ struct CardGroupView: View {
                 }
             }
         }
+        .onAppear {
+            if userSettings.cardOptionState == CardOptionState.remindLater.rawValue {
+                userSettings.cardOptionState = CardOptionState.none.rawValue
+            }
+        }
         //            .frame(maxWidth: .infinity)
         .padding(.leading, 15)
         .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
     }
-    
+      
     
     
     
     func HC3(card: Card) -> some View {
+        
+        HStack(spacing: 0) {
+            
+            cardOptionsView()
+        
         ZStack(alignment: .bottom) {
             WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
                 .resizable()
@@ -112,6 +130,7 @@ struct CardGroupView: View {
                     
                 }
                 .indicator(.activity)
+            
                 
             
             VStack(alignment: .leading, spacing: 30) {
@@ -139,14 +158,22 @@ struct CardGroupView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 6))
             }
             
-            
             .padding(.bottom, 20)
-            
-            
+            }
+        }
+
+        .offset(x: showCardOptions ? (UIScreen.main.bounds.width)/3 : 0, y: 0)
+        .onLongPressGesture {
+            withAnimation {
+                showCardOptions = true
+            }
+           
+            print("This is a long press")
         }
         .frame(maxWidth: .infinity)
         .frame(height: 350)
         .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
+        
         .onTapGesture() {
             UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
         }
@@ -167,6 +194,8 @@ struct CardGroupView: View {
             .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .onTapGesture() {
+                userSettings.cardOptionState = CardOptionState.none.rawValue
+                print(userSettings.cardOptionState)
                 UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
             }
     }
@@ -258,6 +287,49 @@ struct CardGroupView: View {
 
         }
         
+    }
+    
+    func cardOptionsView() -> some View {
+       return
+        
+        ZStack {
+        
+            Color.white
+        VStack {
+            
+            VStack {
+                Button(action: {
+                    userSettings.cardOptionState = CardOptionState.remindLater.rawValue
+                    print(userSettings.cardOptionState)
+                }) {
+                    
+                    Image("bellIcon")
+                }
+                Text("remind later")
+                    .font(Font.custom("Roboto-Regular", size: 10))
+            }
+            .padding()
+            .background(Color("iconBackgroundColor"))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding(.bottom, 37)
+           
+           VStack {
+               Button(action: {
+                   userSettings.cardOptionState = CardOptionState.dismissNow.rawValue
+                   print(userSettings.cardOptionState)
+               }) {
+                   Image("dismissIcon")
+                       
+               }
+               Text("dismiss now")
+                   .font(Font.custom("Roboto-Regular", size: 10))
+           }
+           .padding()
+           .clipShape(RoundedRectangle(cornerRadius: 12))
+           .background(Color("iconBackgroundColor"))
+           .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+        }
     }
 
 }

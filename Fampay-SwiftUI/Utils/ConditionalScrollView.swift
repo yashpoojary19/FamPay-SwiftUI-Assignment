@@ -21,9 +21,11 @@ struct ConditionalScrollView<Content: View>: View {
     }
     
     var body: some View {
-        if isVisible {
-            
-            if cardGroup.cards.count > 0 {
+        
+        // check is_scrollable if multiple cards
+    
+        if cardGroup.cards.count > 1 &&  isVisible {
+       
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
                         builtContent
@@ -31,9 +33,8 @@ struct ConditionalScrollView<Content: View>: View {
                     .padding(.trailing, 15)
                 }
             }
-          
-           
-        } else {
+        
+        else {
             HStack(spacing: 15) {
                 builtContent
             }

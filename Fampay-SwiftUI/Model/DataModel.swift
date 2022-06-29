@@ -122,3 +122,11 @@ enum DesignType: String, Codable {
     case dynamicWidthCard = "HC9"
             
 }
+
+//MARK: - Card Option States
+enum CardOptionState: String {
+    case none = "none"
+    case remindLater = "remindLater"
+    case dismissNow = "dismissNow"
+   
+}
