@@ -13,7 +13,7 @@ struct ConditionalScrollView<Content: View>: View {
     private var cardGroup: CardGroup
     private var builtContent: Content
     
-    
+    let width: CGFloat = UIScreen.main.bounds.width
     init(isVisible: Bool, cardGroup: CardGroup, content: () -> Content) {
         self.isVisible = isVisible
         self.cardGroup = cardGroup
@@ -30,8 +30,10 @@ struct ConditionalScrollView<Content: View>: View {
                     HStack(spacing: 15) {
                         builtContent
                     }
+                    .frame(maxWidth: .infinity)
                     .padding(.trailing, 15)
                 }
+               
             }
         
         else {

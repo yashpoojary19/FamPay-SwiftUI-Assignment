@@ -20,6 +20,7 @@ struct CardGroupView: View {
     
     let width: CGFloat = UIScreen.main.bounds.width
     
+    
     var body: some View {
         VStack(spacing: 15) {
             
@@ -34,65 +35,66 @@ struct CardGroupView: View {
                 
                 ForEach(viewModel.cards, id: \.uniqueId) { cardGroup in
                     
-                  
-              
+                    
+                    
                     if cardGroup.designType == DesignType.bigDisplayCard {
                         if userSettings.cardOptionState == CardOptionState.none.rawValue  {
-                        ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                            
-                      
+                            ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
+                                
+                                
                                 ForEach(cardGroup.cards) { card in
                                     
-                                        HC3(card: card)
+                                    HC3(card: card)
                                 }
-                          
-                               
-                               
-                        }
+                                
+                                
+                                
+                            }
                         }
                         
                     } else if cardGroup.designType == DesignType.smallCardWithArrow {
                         
                         
                         ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                                ForEach(cardGroup.cards) { card in
-                                    HC6(card: card)
-                                }
+                            ForEach(cardGroup.cards) { card in
+                                HC6(card: card)
+                            }
                         }
-                    
+                        
                         
                     } else if cardGroup.designType == DesignType.imageCard {
                         
                         ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                                ForEach(cardGroup.cards) { card in
-                                    HC5(card: card)
-                                }
+                            ForEach(cardGroup.cards) { card in
+                                HC5(card: card)
+                            }
                         }
                         
                     } else if cardGroup.designType == DesignType.dynamicWidthCard {
                         
                         HStack {
-                                ForEach(cardGroup.cards) { card in
-                                    HC9(card: card)
-                                }
-                                .frame(height: CGFloat(cardGroup.height ?? 78))
-                                .frame(maxWidth: .infinity)
+                            ForEach(cardGroup.cards) { card in
+                                HC9(card: card)
+
+                            }
+                            .frame(height: CGFloat(cardGroup.height ?? 78))
+                            .frame(maxWidth: .infinity)
                         }
                         .padding(.trailing, 15)
                         
-                      
                         
- 
+                        
+                        
                         
                     } else if cardGroup.designType == DesignType.smallDisplayCard {
                         
                         ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                                ForEach(cardGroup.cards) { card in
-                                    HC1(card: card)
-                                }
+                            ForEach(cardGroup.cards) { card in
+                                HC1(card: card)
+                            }
                         }
                         
-                    
+                        
                         
                     }
                     
@@ -100,8 +102,9 @@ struct CardGroupView: View {
                     
                 }
             }
+
         }
-        .onAppear {
+        .onDisappear {
             if userSettings.cardOptionState == CardOptionState.remindLater.rawValue {
                 userSettings.cardOptionState = CardOptionState.none.rawValue
             }
@@ -110,70 +113,77 @@ struct CardGroupView: View {
         .padding(.leading, 15)
         .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
     }
-      
+    
     
     
     
     func HC3(card: Card) -> some View {
         
-        HStack(spacing: 0) {
+        ZStack {
+            
+            Color.white.clipShape(RoundedRectangle(cornerRadius: 12))
+        
+            ZStack(alignment: .leading) {
             
             cardOptionsView()
-        
-        ZStack(alignment: .bottom) {
-            WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
-                .resizable()
-                .placeholder {
-                    RoundedRectangle(cornerRadius: 12)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color(hex: card.bgColor ?? "#FFF00"))
-                    
-                }
-                .indicator(.activity)
-            
-                
-            
-            VStack(alignment: .leading, spacing: 30) {
-                //
-                Text((card.formattedTitle?.text) ?? "")
-                    .font(Font.custom("Roboto-Medium", size: 30))
-                    .lineLimit(2)
-                
-                Text((card.formattedDescription?.text) ?? "")
-                    .font(Font.custom("Roboto-Regular", size: 12))
-                    .lineLimit(2)
-                
-                
-                
-                Button(action: {
-                    UIApplication.shared.open(URL(string: card.cta?.first?.url ?? "https://fampay.in/")!)
-                }) {
-                    Text(card.cta?.first?.text ?? "Action")
-                        .font(Font.custom("Roboto-Medium", size: 14))
-                        .foregroundColor(Color(hex: card.cta?.first?.textColor ?? "#FFFFFF"))
-                        .padding()
-                        .padding(.horizontal)
-                }
-                .background(Color(hex: card.cta?.first?.bgColor ?? "#000000"))
-                .clipShape(RoundedRectangle(cornerRadius: 6))
-            }
-            
-            .padding(.bottom, 20)
-            }
-        }
 
-        .offset(x: showCardOptions ? (UIScreen.main.bounds.width)/3 : 0, y: 0)
+            
+//
+            
+            ZStack(alignment: .bottom) {
+                WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
+                    .resizable()
+                    .placeholder {
+                        RoundedRectangle(cornerRadius: 12)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color(hex: card.bgColor ?? "#FFF00"))
+                        
+                    }
+                    .indicator(.activity)
+                
+                
+                
+                VStack(alignment: .leading, spacing: 30) {
+                    //
+                    Text((card.formattedTitle?.text) ?? "")
+                        .font(Font.custom("Roboto-Medium", size: 30))
+                        .lineLimit(2)
+                    
+                    Text((card.formattedDescription?.text) ?? "")
+                        .font(Font.custom("Roboto-Regular", size: 12))
+                        .lineLimit(2)
+                    
+                    Button(action: {
+                        UIApplication.shared.open(URL(string: card.cta?.first?.url ?? "https://fampay.in/")!)
+                    }) {
+                        Text(card.cta?.first?.text ?? "Action")
+                            .font(Font.custom("Roboto-Medium", size: 14))
+                            .foregroundColor(Color(hex: card.cta?.first?.textColor ?? "#FFFFFF"))
+                            .padding()
+                            .padding(.horizontal)
+                    }
+                    .background(Color(hex: card.cta?.first?.bgColor ?? "#000000"))
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 20)
+                }
+                .offset(x: showCardOptions ? 100 : 0, y: 0)
+            }
+            
+        }
+        .clipped()
+        
         .onLongPressGesture {
             withAnimation {
                 showCardOptions = true
             }
-           
+            
             print("This is a long press")
         }
         .frame(maxWidth: .infinity)
         .frame(height: 350)
-        .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
-        
+        .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
         .onTapGesture() {
             UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
         }
@@ -225,7 +235,7 @@ struct CardGroupView: View {
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                   
+                
                 
             }
             .frame(maxWidth: .infinity)
@@ -249,8 +259,9 @@ struct CardGroupView: View {
                         .foregroundColor(Color(hex: "#FFFFFF"))
                     
                 }
+                .aspectRatio(contentMode: .fill)
                 .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+//                .clipped()
             
         }
     }
@@ -259,7 +270,6 @@ struct CardGroupView: View {
     func HC1(card: Card) -> some View {
         
         return  HStack(spacing: 15) {
-            //                            ForEach(cardGroup.cards) { card in
             
             ZStack {
                 
@@ -275,70 +285,83 @@ struct CardGroupView: View {
                             
                         }
                         .frame(height: 36)
-                        .frame(maxWidth: .infinity)
+                       
+//                        .frame(maxWidth: .infinity)
                         .aspectRatio(CGFloat(card.icon?.aspectRatio ?? 1), contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     
                     Text((card.formattedTitle?.text) ?? "")
                         .font(Font.custom("Roboto-Medium", size: 14))
                 }
+                
                 .padding()
+                
+                
             }
-
+            .frame(width: width * 0.45)
+            
+            
         }
+       
         
     }
     
     func cardOptionsView() -> some View {
-       return
-        
-        ZStack {
-        
-            Color.white
-        VStack {
+        return ZStack {
+            
             
             VStack {
-                Button(action: {
-                    userSettings.cardOptionState = CardOptionState.remindLater.rawValue
-                    print(userSettings.cardOptionState)
-                }) {
-                    
-                    Image("bellIcon")
+                
+                VStack {
+                    Button(action: {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            
+                            userSettings.cardOptionState = CardOptionState.remindLater.rawValue
+                        }
+                        print(userSettings.cardOptionState)
+                    }) {
+                        
+                        Image("bellIcon")
+                    }
+                    Text("remind later")
+                        .font(Font.custom("Roboto-Regular", size: 10))
                 }
-                Text("remind later")
-                    .font(Font.custom("Roboto-Regular", size: 10))
-            }
-            .padding()
-            .background(Color("iconBackgroundColor"))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding(.bottom, 37)
-           
-           VStack {
-               Button(action: {
-                   userSettings.cardOptionState = CardOptionState.dismissNow.rawValue
-                   print(userSettings.cardOptionState)
-               }) {
-                   Image("dismissIcon")
-                       
-               }
-               Text("dismiss now")
-                   .font(Font.custom("Roboto-Regular", size: 10))
-           }
-           .padding()
-           .clipShape(RoundedRectangle(cornerRadius: 12))
-           .background(Color("iconBackgroundColor"))
-           .clipShape(RoundedRectangle(cornerRadius: 12))
+                .padding()
+                .background(Color("iconBackgroundColor"))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .padding(.bottom, 37)
+                
+                VStack {
+                    Button(action: {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            userSettings.cardOptionState = CardOptionState.dismissNow.rawValue
+                        }
+                        
+                        print(userSettings.cardOptionState)
+                    }) {
+                        Image("dismissIcon")
+                        
+                    }
+                    Text("dismiss now")
+                        .font(Font.custom("Roboto-Regular", size: 10))
+                }
+                .padding()
+                .background(Color("iconBackgroundColor"))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                
             }
         }
-    }
+        .frame(width: 100)
 
+    }
+    
 }
 
-struct CardGroupView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardGroupView()
-    }
-}
+//struct CardGroupView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardGroupView()
+//    }
+//}
 
 
 
