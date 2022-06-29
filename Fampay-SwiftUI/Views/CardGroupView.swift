@@ -20,14 +20,12 @@ struct CardGroupView: View {
     
     let width: CGFloat = UIScreen.main.bounds.width
     
+    let tapOnLinkAction: (String) -> Void
     
     var body: some View {
         VStack(spacing: 15) {
             
             ScrollView(.vertical, showsIndicators: false) {
-                
-                
-                
                 PullToRefresh(coordinateSpaceName: "pullToRefresh") {
                     viewModel.getCards()
                     
@@ -75,17 +73,12 @@ struct CardGroupView: View {
                         HStack {
                             ForEach(cardGroup.cards) { card in
                                 HC9(card: card)
-
                             }
                             .frame(height: CGFloat(cardGroup.height ?? 78))
                             .frame(maxWidth: .infinity)
                         }
                         .padding(.trailing, 15)
-                        
-                        
-                        
-                        
-                        
+ 
                     } else if cardGroup.designType == DesignType.smallDisplayCard {
                         
                         ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
@@ -93,13 +86,9 @@ struct CardGroupView: View {
                                 HC1(card: card)
                             }
                         }
-                        
-                        
-                        
+
                     }
-                    
-                    
-                    
+
                 }
             }
 
@@ -154,7 +143,7 @@ struct CardGroupView: View {
                         .lineLimit(2)
                     
                     Button(action: {
-                        UIApplication.shared.open(URL(string: card.cta?.first?.url ?? "https://fampay.in/")!)
+
                     }) {
                         Text(card.cta?.first?.text ?? "Action")
                             .font(Font.custom("Roboto-Medium", size: 14))
@@ -179,13 +168,13 @@ struct CardGroupView: View {
                 showCardOptions = true
             }
             
-            print("This is a long press")
         }
         .frame(maxWidth: .infinity)
         .frame(height: 350)
         .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
         .onTapGesture() {
-            UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
+            tapOnLinkAction(card.url ?? "https://fampay.in/")
+
         }
         
     }
@@ -204,9 +193,7 @@ struct CardGroupView: View {
             .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .onTapGesture() {
-                userSettings.cardOptionState = CardOptionState.none.rawValue
-                print(userSettings.cardOptionState)
-                UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
+                tapOnLinkAction(card.url ?? "https://fampay.in/")
             }
     }
     
@@ -226,7 +213,6 @@ struct CardGroupView: View {
                     }
                     .indicator(.activity)
                     .frame(width: 30, height: 30)
-                //                                                            .frame(maxWidth: .infinity)
                     .scaledToFit()
                 
                 Text(card.formattedDescription?.text ?? "")
@@ -242,7 +228,8 @@ struct CardGroupView: View {
             .padding()
             .contentShape( Rectangle() )
             .onTapGesture() {
-                UIApplication.shared.open(URL(string: card.url ?? "https://fampay.in/")!)
+                tapOnLinkAction(card.url ?? "https://fampay.in/")
+
             }
             
         }
@@ -258,6 +245,9 @@ struct CardGroupView: View {
                         .frame(maxWidth: .infinity)
                         .foregroundColor(Color(hex: "#FFFFFF"))
                     
+                }
+                .onTapGesture {
+                    tapOnLinkAction(card.url ?? "https://fampay.in/")
                 }
                 .aspectRatio(contentMode: .fill)
                 .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
@@ -285,18 +275,16 @@ struct CardGroupView: View {
                             
                         }
                         .frame(height: 36)
-                       
-//                        .frame(maxWidth: .infinity)
                         .aspectRatio(CGFloat(card.icon?.aspectRatio ?? 1), contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     
                     Text((card.formattedTitle?.text) ?? "")
                         .font(Font.custom("Roboto-Medium", size: 14))
                 }
-                
                 .padding()
-                
-                
+            }
+            .onTapGesture {
+                tapOnLinkAction(card.url ?? "https://fampay.in/")
             }
             .frame(width: width * 0.45)
             
