@@ -36,26 +36,26 @@ struct ConditionalScrollView<Content: View>: View {
             // Check for is_scrollable if multiple cards
             
             if cardGroup.cards.count > 1 &&  isVisible {
-           
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 15) {
-                            builtContent
-                        }
-                        .padding(.trailing, 15)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 15) {
+                        builtContent
                     }
-                   
+                    .padding(.trailing, 15)
                 }
+                
+            }
             
             else {
                 HStack(spacing: 15) {
                     builtContent
                 }
-
+                
                 .padding(.trailing, 15)
             }
             
         }
-    
-    
+        
+        
     }
 }

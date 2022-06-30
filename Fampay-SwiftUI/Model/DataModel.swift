@@ -15,8 +15,8 @@ struct CardData: Codable {
     let cardGroups: [CardGroup]
     
     enum CodingKeys: String, CodingKey {
-            case cardGroups = "card_groups"
-        }
+        case cardGroups = "card_groups"
+    }
 }
 
 //MARK: - CardGroup
@@ -54,16 +54,16 @@ struct Card: Codable, Identifiable {
     let cta: [CTA]?
     
     enum CodingKeys: String, CodingKey {
-          case name, title
-          case formattedTitle = "formatted_title"
-          case cardDescription = "description"
-          case formattedDescription = "formatted_description"
-          case icon, url
-          case bgImage = "bg_image"
-          case bgColor = "bg_color"
-          case bgGradient = "bg_gradient"
-          case cta
-      }
+        case name, title
+        case formattedTitle = "formatted_title"
+        case cardDescription = "description"
+        case formattedDescription = "formatted_description"
+        case icon, url
+        case bgImage = "bg_image"
+        case bgColor = "bg_color"
+        case bgGradient = "bg_gradient"
+        case cta
+    }
 }
 
 struct GradientColor: Codable {
@@ -81,7 +81,7 @@ struct CTA: Codable, Identifiable {
     let id = UUID()
     let text, bgColor, textColor: String?
     let url: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case text
         case bgColor = "bg_color"
@@ -95,7 +95,7 @@ struct BgImage: Codable {
     let imageType: ImageType
     let imageURL: String?
     let aspectRatio: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case imageType = "image_type"
         case imageURL = "image_url"
@@ -138,7 +138,7 @@ enum DesignType: String, Codable {
     case imageCard = "HC5"
     case smallCardWithArrow = "HC6"
     case dynamicWidthCard = "HC9"
-            
+    
 }
 
 //MARK: - Card Option States
@@ -146,7 +146,7 @@ enum CardOptionState: String {
     case none = "none"
     case remindLater = "remindLater"
     case dismissNow = "dismissNow"
-   
+    
 }
 
 

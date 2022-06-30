@@ -13,8 +13,8 @@ import SDWebImageSwiftUI
 struct CardGroupView: View {
     
     @ObservedObject var viewModel: DataViewModel
-
-
+    
+    
     @ObservedObject var userSettings = UserSettings()
     
     let width: CGFloat = UIScreen.main.bounds.width
@@ -26,7 +26,7 @@ struct CardGroupView: View {
     var body: some View {
         VStack(spacing: 15) {
             
-         
+            
             
             ScrollView(.vertical, showsIndicators: false) {
                 PullToRefresh(coordinateSpaceName: "pullToRefresh") {
@@ -35,66 +35,66 @@ struct CardGroupView: View {
                 }
                 
                 if !viewModel.cards.isEmpty {
-                
-                ForEach(viewModel.cards, id: \.uniqueId) { cardGroup in
-       
-                    if cardGroup.designType == DesignType.bigDisplayCard {
-                        if userSettings.cardOptionState == CardOptionState.none.rawValue  {
-                            ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                                
-                                
-                                ForEach(cardGroup.cards) { card in
+                    
+                    ForEach(viewModel.cards, id: \.uniqueId) { cardGroup in
+                        
+                        if cardGroup.designType == DesignType.bigDisplayCard {
+                            if userSettings.cardOptionState == CardOptionState.none.rawValue  {
+                                ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
                                     
-                                    HC3(card: card)
-                                       
+                                    
+                                    ForEach(cardGroup.cards) { card in
+                                        
+                                        HC3(card: card)
+                                        
+                                    }
+                                    
+                                }
+                            }
+                            
+                        } else if cardGroup.designType == DesignType.smallCardWithArrow {
+                            
+                            
+                            ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
+                                ForEach(cardGroup.cards) { card in
+                                    HC6(card: card)
+                                }
+                            }
+                            
+                            
+                        } else if cardGroup.designType == DesignType.imageCard {
+                            
+                            ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
+                                ForEach(cardGroup.cards) { card in
+                                    HC5(card: card)
+                                    
+                                    
                                 }
                                 
                             }
-                        }
-                        
-                    } else if cardGroup.designType == DesignType.smallCardWithArrow {
-                        
-                        
-                        ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                            ForEach(cardGroup.cards) { card in
-                                HC6(card: card)
-                            }
-                        }
-                        
-                        
-                    } else if cardGroup.designType == DesignType.imageCard {
-                        
-                        ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                            ForEach(cardGroup.cards) { card in
-                                HC5(card: card)
-                                    
-
-                            }
-                          
-                        }
-                        
-                    } else if cardGroup.designType == DesignType.dynamicWidthCard {
-                        
-                        ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                            ForEach(cardGroup.cards) { card in
+                            
+                        } else if cardGroup.designType == DesignType.dynamicWidthCard {
+                            
+                            ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
+                                ForEach(cardGroup.cards) { card in
                                     HC9(card: card)
                                     
+                                }
                             }
-                        }
-                        
-                    } else if cardGroup.designType == DesignType.smallDisplayCard {
-                        
-                        ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
-                            ForEach(cardGroup.cards) { card in
-                                HC1(card: card)
+                            
+                        } else if cardGroup.designType == DesignType.smallDisplayCard {
+                            
+                            ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
+                                ForEach(cardGroup.cards) { card in
+                                    HC1(card: card)
+                                }
                             }
+                            
                         }
                         
                     }
-                    
+                    .padding(.bottom, heightPadding)    // For smaller screen sizes
                 }
-                .padding(.bottom, heightPadding)    // For smaller screen sizes
-            }
                 else {
                     
                     LoadingView()
@@ -103,13 +103,13 @@ struct CardGroupView: View {
             }
             
             
-       
-            }
+            
+        }
         .padding(.leading, 15)
         .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
-        }
-        
-//    }
+    }
+    
+    //    }
     
     
     
@@ -130,7 +130,7 @@ struct CardGroupView: View {
                         }
                         
                     }
-     
+                
                 
                 ZStack(alignment: .bottom) {
                     WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
@@ -147,26 +147,26 @@ struct CardGroupView: View {
                     
                     VStack(alignment: .leading, spacing: 30) {
                         //
-//                        Text((card.formattedTitle?.text ?? card.title) ?? "")
-                            
-                            
+                        //                        Text((card.formattedTitle?.text ?? card.title) ?? "")
+                        
+                        
                         Text(card.formattedTitle?.getFormattedString() ?? "")
                             .foregroundColor(.white)
                             .font(Font.custom("Roboto-Medium", size: 30))
                             .lineLimit(2)
                             .minimumScaleFactor(0.7)
-//
-//                        Text((replaceFormattedString(text:card.formattedTitle?.text, entities: card.formattedTitle?.entities) ?? card.title) ?? "")
-//                            .foregroundColor(.white)
-//                            .font(Font.custom("Roboto-Medium", size: 30))
-//                            .lineLimit(2)
-//                            .minimumScaleFactor(0.7)
+                        //
+                        //                        Text((replaceFormattedString(text:card.formattedTitle?.text, entities: card.formattedTitle?.entities) ?? card.title) ?? "")
+                        //                            .foregroundColor(.white)
+                        //                            .font(Font.custom("Roboto-Medium", size: 30))
+                        //                            .lineLimit(2)
+                        //                            .minimumScaleFactor(0.7)
                         
                         
-//
-
+                        //
                         
-//                        Text((card.formattedDescription?.text ?? card.title) ?? "")
+                        
+                        //                        Text((card.formattedDescription?.text ?? card.title) ?? "")
                         
                         Text(card.formattedDescription?.getFormattedString() ?? "")
                             .foregroundColor(.white)
@@ -177,7 +177,7 @@ struct CardGroupView: View {
                         Button(action: {
                             
                             tapOnLinkAction(card.cta?.first?.url ?? "https://fampay.in/")
-                           
+                            
                             
                         }) {
                             Text(card.cta?.first?.text ?? "Action")
@@ -208,7 +208,7 @@ struct CardGroupView: View {
             } else {
                 tapOnLinkAction(card.url ?? "https://fampay.in/")
             }
-
+            
         }
         
         .onLongPressGesture {
@@ -219,7 +219,7 @@ struct CardGroupView: View {
         }
         .frame(width: width - 20)
         .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
-       
+        
         
     }
     
@@ -240,8 +240,8 @@ struct CardGroupView: View {
                 tapOnLinkAction(card.url ?? "https://fampay.in/")
             }
             .frame(width: width - 20)
-
-            
+        
+        
     }
     
     //SMALL_CARD_WITH_ARROW("HC6")
@@ -265,7 +265,7 @@ struct CardGroupView: View {
                 
                 VStack(alignment: .leading) {
                     
-            
+                    
                     Text(card.formattedTitle?.getFormattedString() ?? "")
                         .font(Font.custom("Roboto-Medium", size: 14))
                         .lineLimit(1)
@@ -278,12 +278,12 @@ struct CardGroupView: View {
                     
                 }
                 
-               
+                
                 
                 
                 
                 Spacer()
-
+                
                 
             }
             .frame(maxWidth: .infinity)
@@ -313,8 +313,8 @@ struct CardGroupView: View {
                     tapOnLinkAction(card.url ?? "https://fampay.in/")
                 }
                 .aspectRatio(contentMode: .fit)
-
-      
+            
+            
             
         }
     }
@@ -341,7 +341,7 @@ struct CardGroupView: View {
                         .frame(height: 36)
                         .aspectRatio(CGFloat(card.icon?.aspectRatio ?? 1), contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
- 
+                    
                     
                     Text(card.formattedTitle?.getFormattedString() ?? "")
                         .font(Font.custom("Roboto-Medium", size: 14))
@@ -356,7 +356,7 @@ struct CardGroupView: View {
                 tapOnLinkAction(card.url ?? "https://fampay.in/")
             }
             // This sets the component to take the full available size
-//            .frame(width: width * 0.45)
+            //            .frame(width: width * 0.45)
             
             
         }
@@ -382,10 +382,10 @@ struct CardGroupView: View {
                 }
                 
             }
-        
+            
         }
         .frame(width: width / 3)
-  
+        
     }
 }
 
