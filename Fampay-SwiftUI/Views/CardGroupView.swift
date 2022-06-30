@@ -14,7 +14,6 @@ struct CardGroupView: View {
     
     @ObservedObject var viewModel: DataViewModel
     
-    
     @ObservedObject var userSettings = UserSettings()
     
     let width: CGFloat = UIScreen.main.bounds.width
@@ -109,9 +108,6 @@ struct CardGroupView: View {
         .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
     }
     
-    //    }
-    
-    
     
     // BIG_DISPLAY_CARD("HC3")
     func HC3(card: Card) -> some View {
@@ -146,8 +142,7 @@ struct CardGroupView: View {
                     
                     
                     VStack(alignment: .leading, spacing: 30) {
-                        //
-                        //                        Text((card.formattedTitle?.text ?? card.title) ?? "")
+                        
                         
                         
                         Text(card.formattedTitle?.getFormattedString() ?? "")
@@ -155,18 +150,6 @@ struct CardGroupView: View {
                             .font(Font.custom("Roboto-Medium", size: 30))
                             .lineLimit(2)
                             .minimumScaleFactor(0.7)
-                        //
-                        //                        Text((replaceFormattedString(text:card.formattedTitle?.text, entities: card.formattedTitle?.entities) ?? card.title) ?? "")
-                        //                            .foregroundColor(.white)
-                        //                            .font(Font.custom("Roboto-Medium", size: 30))
-                        //                            .lineLimit(2)
-                        //                            .minimumScaleFactor(0.7)
-                        
-                        
-                        //
-                        
-                        
-                        //                        Text((card.formattedDescription?.text ?? card.title) ?? "")
                         
                         Text(card.formattedDescription?.getFormattedString() ?? "")
                             .foregroundColor(.white)
@@ -176,7 +159,7 @@ struct CardGroupView: View {
                         
                         Button(action: {
                             
-                            tapOnLinkAction(card.cta?.first?.url ?? "https://fampay.in/")
+                            tapOnLinkAction(card.cta?.first?.url ?? String.fallbackURLString)
                             
                             
                         }) {
@@ -206,7 +189,7 @@ struct CardGroupView: View {
                     viewModel.showCardOptions = false
                 }
             } else {
-                tapOnLinkAction(card.url ?? "https://fampay.in/")
+                tapOnLinkAction(card.url ?? String.fallbackURLString)
             }
             
         }
@@ -237,7 +220,7 @@ struct CardGroupView: View {
             .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .onTapGesture() {
-                tapOnLinkAction(card.url ?? "https://fampay.in/")
+                tapOnLinkAction(card.url ?? String.fallbackURLString)
             }
             .frame(width: width - 20)
         
@@ -290,7 +273,7 @@ struct CardGroupView: View {
             .padding()
             .contentShape( Rectangle() )
             .onTapGesture() {
-                tapOnLinkAction(card.url ?? "https://fampay.in/")
+                tapOnLinkAction(card.url ?? String.fallbackURLString)
                 
             }
             
@@ -310,7 +293,7 @@ struct CardGroupView: View {
                     
                 }
                 .onTapGesture {
-                    tapOnLinkAction(card.url ?? "https://fampay.in/")
+                    tapOnLinkAction(card.url ?? String.fallbackURLString)
                 }
                 .aspectRatio(contentMode: .fit)
             
@@ -353,7 +336,7 @@ struct CardGroupView: View {
                 .padding()
             }
             .onTapGesture {
-                tapOnLinkAction(card.url ?? "https://fampay.in/")
+                tapOnLinkAction(card.url ?? String.fallbackURLString)
             }
             // This sets the component to take the full available size
             //            .frame(width: width * 0.45)
@@ -388,6 +371,5 @@ struct CardGroupView: View {
         
     }
 }
-
 
 

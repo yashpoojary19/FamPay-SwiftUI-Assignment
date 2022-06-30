@@ -8,8 +8,8 @@
 import Foundation
 
 
+// Returns a formatted string from entity
 extension FormattedText {
-    // Returns a formatted string from entity
     func getFormattedString() -> String {
         if entities.isEmpty {
             return text

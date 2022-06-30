@@ -15,7 +15,7 @@ class DataViewModel: ObservableObject {
     var cancellables = Set<AnyCancellable>()
     
     
-    
+    // Alert settings
     @Published var shouldShowAlert = false
     @Published var alertMessage = ""
     

@@ -27,6 +27,7 @@
 		B6D3C5CD286D89F800A85076 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3C5CC286D89F800A85076 /* DismissButton.swift */; };
 		B6D3C5CF286D8F8B00A85076 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3C5CE286D8F8B00A85076 /* LoadingView.swift */; };
 		B6D3C5D5286E0CEE00A85076 /* FormattedText+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3C5D4286E0CED00A85076 /* FormattedText+FormattedString.swift */; };
+		B6D3C5D9286E13D100A85076 /* FallBackURLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3C5D8286E13D100A85076 /* FallBackURLString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		B6D3C5CC286D89F800A85076 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		B6D3C5CE286D8F8B00A85076 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		B6D3C5D4286E0CED00A85076 /* FormattedText+FormattedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormattedText+FormattedString.swift"; sourceTree = "<group>"; };
+		B6D3C5D8286E13D100A85076 /* FallBackURLString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FallBackURLString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			children = (
 				B6838474286B76F600302098 /* HexCode+Color.swift */,
 				B6D3C5D4286E0CED00A85076 /* FormattedText+FormattedString.swift */,
+				B6D3C5D8286E13D100A85076 /* FallBackURLString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				ADAAB7F8232541AF006325FC /* SceneDelegate.swift in Sources */,
 				B6D3C5CD286D89F800A85076 /* DismissButton.swift in Sources */,
 				B64633B8286CC42B005B6C61 /* CardGroupCoordinator.swift in Sources */,
+				B6D3C5D9286E13D100A85076 /* FallBackURLString.swift in Sources */,
 				ADAAB7FA232541B0006325FC /* ContentView.swift in Sources */,
 				B64633AE286C3CC1005B6C61 /* PullToRefresh.swift in Sources */,
 				B683846C286B3BB200302098 /* DataViewModel.swift in Sources */,
