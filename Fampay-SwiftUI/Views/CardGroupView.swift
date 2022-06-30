@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImage
 import SDWebImageSwiftUI
 
 
@@ -14,8 +13,7 @@ import SDWebImageSwiftUI
 struct CardGroupView: View {
     
     @StateObject var viewModel = DataViewModel()
-    @State private var showCardOptions = false
-    
+
     @ObservedObject var userSettings = UserSettings()
     
     let width: CGFloat = UIScreen.main.bounds.width
@@ -32,9 +30,7 @@ struct CardGroupView: View {
                 }
                 
                 ForEach(viewModel.cards, id: \.uniqueId) { cardGroup in
-                    
-                    
-                    
+       
                     if cardGroup.designType == DesignType.bigDisplayCard {
                         if userSettings.cardOptionState == CardOptionState.none.rawValue  {
                             ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
@@ -45,9 +41,6 @@ struct CardGroupView: View {
                                     HC3(card: card)
                                        
                                 }
-                                
-                                
-                                
                                 
                             }
                         }
@@ -67,19 +60,20 @@ struct CardGroupView: View {
                         ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
                             ForEach(cardGroup.cards) { card in
                                 HC5(card: card)
+                                    
+
                             }
+                          
                         }
                         
                     } else if cardGroup.designType == DesignType.dynamicWidthCard {
                         
-                        HStack {
+                        ConditionalScrollView(isVisible: cardGroup.isScrollable, cardGroup: cardGroup) {
                             ForEach(cardGroup.cards) { card in
-                                HC9(card: card)
+                                    HC9(card: card)
+                                    
                             }
-                            .frame(height: CGFloat(cardGroup.height ?? 78))
-                            .frame(maxWidth: .infinity)
                         }
-                        .padding(.trailing, 15)
                         
                     } else if cardGroup.designType == DesignType.smallDisplayCard {
                         
@@ -95,19 +89,21 @@ struct CardGroupView: View {
             }
             
         }
+        .onAppear {
+            viewModel.getCards()
+        }
         .onDisappear {
             if userSettings.cardOptionState == CardOptionState.remindLater.rawValue {
                 userSettings.cardOptionState = CardOptionState.none.rawValue
             }
         }
-        //            .frame(maxWidth: .infinity)
         .padding(.leading, 15)
         .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
     }
     
     
     
-    
+    // BIG_DISPLAY_CARD("HC3")
     func HC3(card: Card) -> some View {
         
         ZStack {
@@ -120,14 +116,11 @@ struct CardGroupView: View {
                     .contentShape(Rectangle())
                     .onTapGesture {
                         withAnimation(.easeIn(duration: 0.5)) {
-                            showCardOptions = false
+                            viewModel.showCardOptions = false
                         }
                         
                     }
-                
-                
-                
-                //
+     
                 
                 ZStack(alignment: .bottom) {
                     WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
@@ -145,10 +138,13 @@ struct CardGroupView: View {
                     VStack(alignment: .leading, spacing: 30) {
                         //
                         Text((card.formattedTitle?.text) ?? "")
+                            .foregroundColor(.white)
                             .font(Font.custom("Roboto-Medium", size: 30))
                             .lineLimit(2)
+                            
                         
                         Text((card.formattedDescription?.text) ?? "")
+                            .foregroundColor(.white)
                             .font(Font.custom("Roboto-Regular", size: 12))
                             .lineLimit(2)
                         
@@ -167,16 +163,16 @@ struct CardGroupView: View {
                     .padding(.horizontal)
                     .padding(.bottom, 20)
                 }
-                .offset(x: showCardOptions ? (width / 3) : 0, y: 0)
+                .offset(x: viewModel.showCardOptions ? (width / 3) : 0, y: 0)
             }
             
         }
         .clipped()
         .onTapGesture() {
             
-            if showCardOptions {
+            if viewModel.showCardOptions {
                 withAnimation(.easeIn(duration: 0.5)) {
-                    showCardOptions = false
+                    viewModel.showCardOptions = false
                 }
             } else {
                 tapOnLinkAction(card.url ?? "https://fampay.in/")
@@ -186,17 +182,17 @@ struct CardGroupView: View {
         
         .onLongPressGesture {
             withAnimation {
-                showCardOptions = true
+                viewModel.showCardOptions = true
             }
             
         }
         .frame(width: width - 20)
         .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fill)
-        .contentShape(Rectangle())
        
         
     }
     
+    // IMAGE_CARD("HC5")
     func HC5(card: Card) -> some View {
         return WebImage(url: URL(string: card.bgImage?.imageURL ?? ""))
             .resizable()
@@ -213,9 +209,11 @@ struct CardGroupView: View {
                 tapOnLinkAction(card.url ?? "https://fampay.in/")
             }
             .frame(width: width - 20)
+
+            
     }
     
-    
+    //SMALL_CARD_WITH_ARROW("HC6")
     func HC6(card: Card) -> some View {
         return ZStack {
             
@@ -237,9 +235,7 @@ struct CardGroupView: View {
                     .font(Font.custom("Roboto-Medium", size: 14))
                 
                 Spacer()
-                
-                Image(systemName: "chevron.right")
-                
+
                 
             }
             .frame(maxWidth: .infinity)
@@ -253,6 +249,7 @@ struct CardGroupView: View {
         }
     }
     
+    // DYNAMIC_WIDTH_CARD("HC9")
     func HC9(card: Card) -> some View {
         
         return  HStack(spacing: 15) {
@@ -267,13 +264,14 @@ struct CardGroupView: View {
                 .onTapGesture {
                     tapOnLinkAction(card.url ?? "https://fampay.in/")
                 }
-                .aspectRatio(CGFloat(card.bgImage?.aspectRatio ?? 1), contentMode: .fit)
+                .aspectRatio(contentMode: .fit)
+
       
             
         }
     }
     
-    
+    // SMALL_DISPLAY_CARD("HC1")
     func HC1(card: Card) -> some View {
         
         return  HStack(spacing: 15) {
@@ -304,7 +302,8 @@ struct CardGroupView: View {
             .onTapGesture {
                 tapOnLinkAction(card.url ?? "https://fampay.in/")
             }
-            .frame(width: width * 0.45)
+            // This sets the component to take the full available size
+//            .frame(width: width * 0.45)
             
             
         }
@@ -312,6 +311,8 @@ struct CardGroupView: View {
         
     }
     
+    
+    // Options view for BIG_DISPLAY_CARD("HC3")
     func cardOptionsView() -> some View {
         return ZStack {
             
@@ -359,8 +360,7 @@ struct CardGroupView: View {
         
         }
         .frame(width: width / 3)
-        
-        
+  
     }
     
 }

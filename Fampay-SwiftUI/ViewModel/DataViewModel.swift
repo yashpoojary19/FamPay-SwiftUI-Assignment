@@ -14,6 +14,9 @@ class DataViewModel: ObservableObject {
     @Published var cards: [CardGroup] = [CardGroup]()
     var cancellables = Set<AnyCancellable>()
     
+    
+    @Published var showCardOptions = false
+    
     init() {
         getCards()
     }
@@ -45,14 +48,12 @@ class DataViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
         guard let response = output.response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
             throw URLError(.badServerResponse)
         }
-        
         return output.data
-        
         
     }
     

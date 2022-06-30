@@ -38,8 +38,9 @@ struct PullToRefresh: View {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
                     } else {
+                        // Fallback for (iOS 13, *)
                         ActivityIndicator(isAnimating: needRefresh)
-                        // Fallback on earlier versions
+                        
                     }
                 }
                 Spacer()
@@ -63,9 +64,3 @@ struct ActivityIndicator: UIViewRepresentable {
 }
 
 
-//
-//struct PullToRefresh_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PullToRefresh()
-//    }
-//}

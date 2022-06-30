@@ -22,32 +22,40 @@ struct ConditionalScrollView<Content: View>: View {
     
     var body: some View {
         
-        // check is_scrollable if multiple cards
-    
-        if cardGroup.cards.count > 1 &&  isVisible {
-       
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 15) {
-                        builtContent
-                            
-                    }
-                    
-                    .padding(.trailing, 15)
+        // For dynamicWidthCard it's height is equal to height specified in its parent card group
+        if cardGroup.designType == DesignType.dynamicWidthCard {
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 15) {
+                    builtContent
                 }
-               
+                .frame(height: CGFloat(cardGroup.height ?? 78))
             }
-        
-        else {
-            HStack(spacing: 15) {
-                builtContent
+            
+        } else {
+            // Check for is_scrollable if multiple cards
+            
+            if cardGroup.cards.count > 1 &&  isVisible {
+           
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 15) {
+                            builtContent
+                        }
+                        .padding(.trailing, 15)
+                    }
+                   
+                }
+            
+            else {
+                HStack(spacing: 15) {
+                    builtContent
+                }
+
+                .padding(.trailing, 15)
             }
-            .padding(.trailing, 15)
+            
         }
+    
+    
     }
 }
-
-//struct ConditionalScrollView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ConditionalScrollView()
-//    }
-//}

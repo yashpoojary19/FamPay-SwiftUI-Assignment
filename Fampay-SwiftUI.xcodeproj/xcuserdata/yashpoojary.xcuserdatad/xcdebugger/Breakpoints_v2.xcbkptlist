@@ -30,8 +30,8 @@
             filePath = "Fampay-SwiftUI/ViewModel/UserSettings.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -50,6 +50,22 @@
             endingLineNumber = "16"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86E9D37C-39C2-4A4A-961E-20F2E59B303F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fampay-SwiftUI/Views/CardGroupView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "HC3(card:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
