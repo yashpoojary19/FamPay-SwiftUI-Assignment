@@ -1,6 +1,6 @@
 # FamPay iOS Assignment: Contextual Cards
 
-#### This app displays a lit of Contextual Cards. A Contextual Card is used to refer to a view that is rendered using json from an API. These views are dynamic and their properties like images, color, texts, buttons (CTAs) etc. can be changed from backend at anytime. Built as a part of the FamPay iOS assignment.
+#### This app displays a list of Contextual Cards. A Contextual Card is used to refer to a view that is rendered using json from an API. These views are dynamic and their properties like images, color, texts, buttons (CTAs) etc. can be changed from backend at anytime. Built as a part of the FamPay iOS assignment.
 
 ### Support: 
 iOS 13+
