@@ -14,7 +14,13 @@ class DataViewModel: ObservableObject {
     @Published var cards: [CardGroup] = [CardGroup]()
     var cancellables = Set<AnyCancellable>()
     
+
     
+    @Published var shouldShowAlert = false
+    @Published var alertMessage = ""
+
+    
+    // To show card dismiss options for HC3
     @Published var showCardOptions = false
     
     init() {
@@ -22,7 +28,7 @@ class DataViewModel: ObservableObject {
     }
     
     func getCards() {
-        guard let url = URL(string: "https://run.mocky.io/v3/fefcfbeb-5c12-4722-94ad-b8f92caad1ad") else {
+        guard let url = URL(string: "https://run.mocky.io/v3/04a04703-5557-4c84-a127-8c55335bb3b4") else {
             return
         }
         
@@ -38,11 +44,12 @@ class DataViewModel: ObservableObject {
                     print("Finished")
                 case .failure(let error):
                     print("There was an error. \(error)")
-                    // error handling
+                    self.shouldShowAlert = true
+                    self.alertMessage = error.localizedDescription
+
                 }
             } receiveValue: { [weak self] (returnedCardData) in
-                    
-                
+    
                 self?.cards = returnedCardData.cardGroups
                 
             }
@@ -57,5 +64,8 @@ class DataViewModel: ObservableObject {
         
     }
     
+
+    
 }
+
 

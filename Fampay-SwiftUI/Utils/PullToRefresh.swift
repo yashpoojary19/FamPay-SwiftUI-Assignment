@@ -54,7 +54,7 @@ struct ActivityIndicator: UIViewRepresentable {
     
     typealias UIView = UIActivityIndicatorView
     var isAnimating: Bool
-    fileprivate var configuration = { (indicator: UIView) in }
+     var configuration = { (indicator: UIView) in }
 
     func makeUIView(context: UIViewRepresentableContext<Self>) -> UIView { UIView() }
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<Self>) {

@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 
 struct CardGroupView: View {
     
-    @StateObject var viewModel = DataViewModel()
+    @ObservedObject var viewModel: DataViewModel
 
     @ObservedObject var userSettings = UserSettings()
     
@@ -25,11 +25,15 @@ struct CardGroupView: View {
     var body: some View {
         VStack(spacing: 15) {
             
+         
+            
             ScrollView(.vertical, showsIndicators: false) {
                 PullToRefresh(coordinateSpaceName: "pullToRefresh") {
                     viewModel.getCards()
                     
                 }
+                
+                if !viewModel.cards.isEmpty {
                 
                 ForEach(viewModel.cards, id: \.uniqueId) { cardGroup in
        
@@ -88,14 +92,23 @@ struct CardGroupView: View {
                     }
                     
                 }
+                .padding(.bottom, heightPadding)    // For smaller screen sizes
             }
-            .padding(.bottom, heightPadding)    // For smaller screen sizes
+                else {
+                    
+                    LoadingView()
+                    
+                }
+            }
             
-        }
-
+            
+       
+            }
         .padding(.leading, 15)
         .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
-    }
+        }
+        
+//    }
     
     
     

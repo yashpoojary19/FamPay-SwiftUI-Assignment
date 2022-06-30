@@ -1,5 +1,5 @@
 //
-//  HexCodeToColor.swift
+//  HexCode+Color.swift
 //  Fampay-SwiftUI
 //
 //  Created by Yash Poojary on 28/06/22.

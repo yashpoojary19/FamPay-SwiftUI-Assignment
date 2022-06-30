@@ -52,5 +52,161 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0AE59106-4C49-446D-B90C-B768F0342291"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fampay-SwiftUI/Coordinator/CardGroupCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E39C017E-EDE5-4EB5-AC3C-E6A9166B17BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fampay-SwiftUI/Coordinator/CardGroupCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44CCE0C9-E9CB-47E5-966D-20F2AA718B4D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fampay-SwiftUI/Utils/AlertProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "Alert"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "44CCE0C9-E9CB-47E5-966D-20F2AA718B4D - 84e9410a6e984178"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fampay_SwiftUI.AlertProvider.alert.didset : Swift.Optional&lt;Fampay_SwiftUI.AlertProvider.Alert&gt;"
+                  moduleName = "Fampay-SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yashpoojary/Desktop/Code/SwiftUICode/Fampay-SwiftUI/Fampay-SwiftUI/Utils/AlertProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "43">
+               </Location>
+               <Location
+                  uuid = "44CCE0C9-E9CB-47E5-966D-20F2AA718B4D - 6d13ae27a555684e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fampay_SwiftUI.AlertProvider.alert.getter : Swift.Optional&lt;Fampay_SwiftUI.AlertProvider.Alert&gt;"
+                  moduleName = "Fampay-SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yashpoojary/Desktop/Code/SwiftUICode/Fampay-SwiftUI/Fampay-SwiftUI/Utils/AlertProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "235">
+               </Location>
+               <Location
+                  uuid = "44CCE0C9-E9CB-47E5-966D-20F2AA718B4D - 2736cb5010d63052"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fampay_SwiftUI.AlertProvider.alert.setter : Swift.Optional&lt;Fampay_SwiftUI.AlertProvider.Alert&gt;"
+                  moduleName = "Fampay-SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yashpoojary/Desktop/Code/SwiftUICode/Fampay-SwiftUI/Fampay-SwiftUI/Utils/AlertProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "280">
+               </Location>
+               <Location
+                  uuid = "44CCE0C9-E9CB-47E5-966D-20F2AA718B4D - d5379dbba482ce43"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fampay_SwiftUI.AlertProvider.alert.modify : Swift.Optional&lt;Fampay_SwiftUI.AlertProvider.Alert&gt;"
+                  moduleName = "Fampay-SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yashpoojary/Desktop/Code/SwiftUICode/Fampay-SwiftUI/Fampay-SwiftUI/Utils/AlertProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "44CCE0C9-E9CB-47E5-966D-20F2AA718B4D - acb995a2da4fc6c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fampay_SwiftUI.AlertProvider.alert.modify : Swift.Optional&lt;Fampay_SwiftUI.AlertProvider.Alert&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Fampay-SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yashpoojary/Desktop/Code/SwiftUICode/Fampay-SwiftUI/Fampay-SwiftUI/Utils/AlertProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "17">
+               </Location>
+               <Location
+                  uuid = "44CCE0C9-E9CB-47E5-966D-20F2AA718B4D - 6ce323ca1e4b458f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fampay_SwiftUI.AlertProvider.init() -&gt; Fampay_SwiftUI.AlertProvider"
+                  moduleName = "Fampay-SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yashpoojary/Desktop/Code/SwiftUICode/Fampay-SwiftUI/Fampay-SwiftUI/Utils/AlertProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "122">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DEF8338-DC9E-4156-87A9-2EA603473F10"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fampay-SwiftUI/Utils/AlertProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "Alert"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
