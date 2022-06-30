@@ -24,6 +24,7 @@
 		B6838475286B76F600302098 /* HexCodeToColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838474286B76F600302098 /* HexCodeToColor.swift */; };
 		B69F0CAC286B83F300D77A48 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */; };
 		B69F0CAE286B840200D77A48 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */; };
+		B6D3C5CD286D89F800A85076 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D3C5CC286D89F800A85076 /* DismissButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		B6838474286B76F600302098 /* HexCodeToColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCodeToColor.swift; sourceTree = "<group>"; };
 		B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		B6D3C5CC286D89F800A85076 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		B64633AC286C3C9F005B6C61 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B6D3C5CC286D89F800A85076 /* DismissButton.swift */,
 				B64633AD286C3CC1005B6C61 /* PullToRefresh.swift */,
 				B64633AF286C7828005B6C61 /* ConditionalScrollView.swift */,
 			);
@@ -248,6 +251,7 @@
 				B64633B2286C98B8005B6C61 /* UserSettings.swift in Sources */,
 				B64633B0286C7828005B6C61 /* ConditionalScrollView.swift in Sources */,
 				ADAAB7F8232541AF006325FC /* SceneDelegate.swift in Sources */,
+				B6D3C5CD286D89F800A85076 /* DismissButton.swift in Sources */,
 				B64633B8286CC42B005B6C61 /* CardGroupCoordinator.swift in Sources */,
 				ADAAB7FA232541B0006325FC /* ContentView.swift in Sources */,
 				B64633AE286C3CC1005B6C61 /* PullToRefresh.swift in Sources */,

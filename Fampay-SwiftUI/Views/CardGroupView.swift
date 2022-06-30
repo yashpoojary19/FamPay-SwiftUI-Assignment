@@ -323,46 +323,14 @@ struct CardGroupView: View {
             
             VStack {
                 
-                VStack {
-                    Button(action: {
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            
-                            userSettings.cardOptionState = CardOptionState.remindLater.rawValue
-                        }
-                        print(userSettings.cardOptionState)
-                    }) {
-                        
-                        Image("bellIcon")
-                    }
-                    Text("remind later")
-                        .font(Font.custom("Roboto-Regular", size: 10))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
+                DismissButton(imageName: "bellIcon", iconText: "remind later") {
+                    userSettings.cardOptionState = CardOptionState.remindLater.rawValue
                 }
-                .padding()
-                .background(Color("iconBackgroundColor"))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
                 .padding(.bottom, 37)
                 
-                VStack {
-                    Button(action: {
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            userSettings.cardOptionState = CardOptionState.dismissNow.rawValue
-                        }
-                        
-                        print(userSettings.cardOptionState)
-                    }) {
-                        Image("dismissIcon")
-                        
-                    }
-                    Text("dismiss now")
-                        .font(Font.custom("Roboto-Regular", size: 10))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
+                DismissButton(imageName: "dismissIcon", iconText: "dismiss now") {
+                    userSettings.cardOptionState = CardOptionState.dismissNow.rawValue
                 }
-                .padding()
-                .background(Color("iconBackgroundColor"))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
                 
             }
         
@@ -372,20 +340,5 @@ struct CardGroupView: View {
     }
     
 }
-
-
-
-
-
-
-
-
-//struct CardGroupView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardGroupView()
-//    }
-//}
-
-
 
 
