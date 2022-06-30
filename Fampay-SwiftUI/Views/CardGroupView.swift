@@ -147,20 +147,37 @@ struct CardGroupView: View {
                     
                     VStack(alignment: .leading, spacing: 30) {
                         //
-                        Text(card.title ?? "")
+//                        Text((card.formattedTitle?.text ?? card.title) ?? "")
+                            
+                            
+                        Text(card.formattedTitle?.getFormattedString() ?? "")
                             .foregroundColor(.white)
                             .font(Font.custom("Roboto-Medium", size: 30))
                             .lineLimit(2)
                             .minimumScaleFactor(0.7)
-                            
+//
+//                        Text((replaceFormattedString(text:card.formattedTitle?.text, entities: card.formattedTitle?.entities) ?? card.title) ?? "")
+//                            .foregroundColor(.white)
+//                            .font(Font.custom("Roboto-Medium", size: 30))
+//                            .lineLimit(2)
+//                            .minimumScaleFactor(0.7)
                         
-                        Text(card.cardDescription ?? "")
+                        
+//
+
+                        
+//                        Text((card.formattedDescription?.text ?? card.title) ?? "")
+                        
+                        Text(card.formattedDescription?.getFormattedString() ?? "")
                             .foregroundColor(.white)
                             .font(Font.custom("Roboto-Regular", size: 12))
                             .lineLimit(2)
                             .minimumScaleFactor(0.7)
                         
                         Button(action: {
+                            
+                            tapOnLinkAction(card.cta?.first?.url ?? "https://fampay.in/")
+                           
                             
                         }) {
                             Text(card.cta?.first?.text ?? "Action")
@@ -245,12 +262,23 @@ struct CardGroupView: View {
                     .frame(width: 30, height: 30)
                     .scaledToFit()
                 
-
                 
-                Text((card.formattedDescription?.text.replacingOccurrences(of: "{}", with: card.formattedDescription?.entities.first?.text ?? "") ?? card.cardDescription) ?? "")
-                    .font(Font.custom("Roboto-Medium", size: 14))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
+                VStack(alignment: .leading) {
+                    
+            
+                    Text(card.formattedTitle?.getFormattedString() ?? "")
+                        .font(Font.custom("Roboto-Medium", size: 14))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                    
+                    Text(card.formattedDescription?.getFormattedString() ?? "")
+                        .font(Font.custom("Roboto-Regular", size: 14))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                    
+                }
+                
+               
                 
                 
                 
@@ -296,7 +324,7 @@ struct CardGroupView: View {
         
         return  HStack(spacing: 15) {
             
-            ZStack {
+            ZStack(alignment: .center) {
                 
                 Color(hex: card.bgColor ?? "#FFFFFF").clipShape(RoundedRectangle(cornerRadius: 12))
                 
@@ -313,11 +341,14 @@ struct CardGroupView: View {
                         .frame(height: 36)
                         .aspectRatio(CGFloat(card.icon?.aspectRatio ?? 1), contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+ 
                     
-                    Text((card.formattedTitle?.text ?? card.title) ?? "")
+                    Text(card.formattedTitle?.getFormattedString() ?? "")
                         .font(Font.custom("Roboto-Medium", size: 14))
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
+                    
+                    
                 }
                 .padding()
             }
@@ -356,7 +387,7 @@ struct CardGroupView: View {
         .frame(width: width / 3)
   
     }
-    
 }
+
 
 

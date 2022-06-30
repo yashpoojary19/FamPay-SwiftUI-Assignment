@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 
@@ -42,13 +43,14 @@ struct Card: Codable, Identifiable {
     let id = UUID()
     let name: String?
     let title: String?
-    let formattedTitle: FormattedTitle?
+    let formattedTitle: FormattedText?
     let cardDescription: String?
-    let formattedDescription: FormattedDescription?
+    let formattedDescription: FormattedText?
     let icon: BgImage?
     let url: String?
     let bgImage: BgImage?
     let bgColor: String?
+    let bgGradient: GradientColor?
     let cta: [CTA]?
     
     enum CodingKeys: String, CodingKey {
@@ -59,8 +61,19 @@ struct Card: Codable, Identifiable {
           case icon, url
           case bgImage = "bg_image"
           case bgColor = "bg_color"
+          case bgGradient = "bg_gradient"
           case cta
       }
+}
+
+struct GradientColor: Codable {
+    let colors: [String]?
+    let angle: Int? = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case colors
+        case angle
+    }
 }
 
 //MARK: - CTA
@@ -99,16 +112,21 @@ enum ImageType: String, Codable {
 //MARK: - Entity
 struct Entity: Codable {
     let text, color: String
-}
-
-//MARK: - FormattedDescription
-struct FormattedDescription: Codable {
-    let text: String
-    let entities: [Entity]
+    let url: String?
+    let fontStyle: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case text
+        case color
+        case url = "image_url"
+        case fontStyle = "font_style"
+        
+    }
+    
 }
 
 //MARK: - FormattedTitle
-struct FormattedTitle: Codable {
+struct FormattedText: Codable {
     let text: String
     let entities: [Entity]
 }
@@ -130,3 +148,7 @@ enum CardOptionState: String {
     case dismissNow = "dismissNow"
    
 }
+
+
+
+
