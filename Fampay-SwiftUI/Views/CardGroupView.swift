@@ -14,6 +14,7 @@ struct CardGroupView: View {
     
     @ObservedObject var viewModel: DataViewModel
 
+
     @ObservedObject var userSettings = UserSettings()
     
     let width: CGFloat = UIScreen.main.bounds.width
@@ -146,14 +147,14 @@ struct CardGroupView: View {
                     
                     VStack(alignment: .leading, spacing: 30) {
                         //
-                        Text((card.formattedTitle?.text) ?? "")
+                        Text(card.title ?? "")
                             .foregroundColor(.white)
                             .font(Font.custom("Roboto-Medium", size: 30))
                             .lineLimit(2)
                             .minimumScaleFactor(0.7)
                             
                         
-                        Text((card.formattedDescription?.text) ?? "")
+                        Text(card.cardDescription ?? "")
                             .foregroundColor(.white)
                             .font(Font.custom("Roboto-Regular", size: 12))
                             .lineLimit(2)
@@ -244,10 +245,14 @@ struct CardGroupView: View {
                     .frame(width: 30, height: 30)
                     .scaledToFit()
                 
-                Text(card.formattedDescription?.text ?? "")
+
+                
+                Text((card.formattedDescription?.text.replacingOccurrences(of: "{}", with: card.formattedDescription?.entities.first?.text ?? "") ?? card.cardDescription) ?? "")
                     .font(Font.custom("Roboto-Medium", size: 14))
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
+                
+                
                 
                 Spacer()
 
@@ -309,7 +314,7 @@ struct CardGroupView: View {
                         .aspectRatio(CGFloat(card.icon?.aspectRatio ?? 1), contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     
-                    Text((card.formattedTitle?.text) ?? "")
+                    Text((card.formattedTitle?.text ?? card.title) ?? "")
                         .font(Font.custom("Roboto-Medium", size: 14))
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
