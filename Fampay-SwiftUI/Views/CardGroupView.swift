@@ -20,6 +20,8 @@ struct CardGroupView: View {
     
     let tapOnLinkAction: (String) -> Void
     
+    let heightPadding: CGFloat = UIScreen.main.bounds.height > 670 ? 0 : 10
+    
     var body: some View {
         VStack(spacing: 15) {
             
@@ -87,16 +89,10 @@ struct CardGroupView: View {
                     
                 }
             }
+            .padding(.bottom, heightPadding)    // For smaller screen sizes
             
         }
-        .onAppear {
-            viewModel.getCards()
-        }
-        .onDisappear {
-            if userSettings.cardOptionState == CardOptionState.remindLater.rawValue {
-                userSettings.cardOptionState = CardOptionState.none.rawValue
-            }
-        }
+
         .padding(.leading, 15)
         .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
     }
@@ -141,18 +137,22 @@ struct CardGroupView: View {
                             .foregroundColor(.white)
                             .font(Font.custom("Roboto-Medium", size: 30))
                             .lineLimit(2)
+                            .minimumScaleFactor(0.7)
                             
                         
                         Text((card.formattedDescription?.text) ?? "")
                             .foregroundColor(.white)
                             .font(Font.custom("Roboto-Regular", size: 12))
                             .lineLimit(2)
+                            .minimumScaleFactor(0.7)
                         
                         Button(action: {
                             
                         }) {
                             Text(card.cta?.first?.text ?? "Action")
                                 .font(Font.custom("Roboto-Medium", size: 14))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.7)
                                 .foregroundColor(Color(hex: card.cta?.first?.textColor ?? "#FFFFFF"))
                                 .padding()
                                 .padding(.horizontal)
@@ -233,6 +233,8 @@ struct CardGroupView: View {
                 
                 Text(card.formattedDescription?.text ?? "")
                     .font(Font.custom("Roboto-Medium", size: 14))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                 
                 Spacer()
 
@@ -296,6 +298,8 @@ struct CardGroupView: View {
                     
                     Text((card.formattedTitle?.text) ?? "")
                         .font(Font.custom("Roboto-Medium", size: 14))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                 }
                 .padding()
             }
@@ -332,6 +336,8 @@ struct CardGroupView: View {
                     }
                     Text("remind later")
                         .font(Font.custom("Roboto-Regular", size: 10))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                 }
                 .padding()
                 .background(Color("iconBackgroundColor"))
@@ -351,6 +357,8 @@ struct CardGroupView: View {
                     }
                     Text("dismiss now")
                         .font(Font.custom("Roboto-Regular", size: 10))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                 }
                 .padding()
                 .background(Color("iconBackgroundColor"))
@@ -364,6 +372,13 @@ struct CardGroupView: View {
     }
     
 }
+
+
+
+
+
+
+
 
 //struct CardGroupView_Previews: PreviewProvider {
 //    static var previews: some View {
