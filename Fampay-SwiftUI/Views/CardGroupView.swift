@@ -104,6 +104,7 @@ struct CardGroupView: View {
             
             
         }
+        .padding(.top, 5)
         .padding(.leading, 15)
         .background(Color("backgroundColor").edgesIgnoringSafeArea(.all))
     }
@@ -144,18 +145,19 @@ struct CardGroupView: View {
                     VStack(alignment: .leading, spacing: 30) {
                         
                         
-                        
-                        Text(card.formattedTitle?.getFormattedString() ?? "")
-                            .foregroundColor(.white)
+                        returnAttributedText(text: card.formattedTitle?.getFormattedString() ?? "", color: .white)
                             .font(Font.custom("Roboto-Medium", size: 30))
                             .lineLimit(2)
                             .minimumScaleFactor(0.7)
                         
-                        Text(card.formattedDescription?.getFormattedString() ?? "")
-                            .foregroundColor(.white)
+                        
+                        returnAttributedText(text: card.formattedDescription?.getFormattedString() ?? "", color: .white)
                             .font(Font.custom("Roboto-Regular", size: 12))
                             .lineLimit(2)
                             .minimumScaleFactor(0.7)
+                        
+
+                          
                         
                         Button(action: {
                             
@@ -252,16 +254,26 @@ struct CardGroupView: View {
                 
                 VStack(alignment: .leading) {
                     
+                    returnAttributedText(text: card.formattedTitle?.getFormattedString() ?? "", color: .black)
+                        .font(Font.custom("Roboto-Medium", size: 14))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+//
+//                    Text(card.formattedTitle?.getFormattedString() ?? "")
+//                        .font(Font.custom("Roboto-Medium", size: 14))
+//                        .lineLimit(1)
+//                        .minimumScaleFactor(0.7)
                     
-                    Text(card.formattedTitle?.getFormattedString() ?? "")
+                    returnAttributedText(text: card.formattedDescription?.getFormattedString() ?? "", color: .black)
                         .font(Font.custom("Roboto-Medium", size: 14))
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
                     
-                    Text(card.formattedDescription?.getFormattedString() ?? "")
-                        .font(Font.custom("Roboto-Regular", size: 14))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
+                    
+//                    Text(card.formattedDescription?.getFormattedString() ?? "")
+//                        .font(Font.custom("Roboto-Regular", size: 14))
+//                        .lineLimit(1)
+//                        .minimumScaleFactor(0.7)
                     
                 }
                 
@@ -373,6 +385,29 @@ struct CardGroupView: View {
         }
         .frame(width: width / 3)
         
+    }
+    
+    //Returns attributed text
+    
+    func returnAttributedText(text: String, color: Color) -> Text {
+        
+        var textofArray = Text("")
+        
+        let textArray = text.components(separatedBy: ",")
+        
+        
+        textArray.forEach { string in
+            
+            if string.contains("#") {
+                // 7 is used as a hexademical string containts 7 characters including #
+                textofArray = textofArray + Text(string.dropLast(7)).foregroundColor(Color(hex: String(string.suffix(7))))
+            } else {
+                textofArray = textofArray + Text(string).foregroundColor(color)
+            }
+           
+        }
+        
+        return textofArray
     }
 }
 

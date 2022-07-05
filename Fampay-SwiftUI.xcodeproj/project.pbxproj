@@ -163,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				B6838474286B76F600302098 /* HexCode+Color.swift */,
-				B6D3C5D4286E0CED00A85076 /* FormattedText+FormattedString.swift */,
 				B6D3C5D8286E13D100A85076 /* FallBackURLString.swift */,
 			);
 			path = Extensions;
@@ -174,6 +173,7 @@
 			children = (
 				B69F0CAD286B840200D77A48 /* Roboto-Regular.ttf */,
 				B69F0CAB286B83F300D77A48 /* Roboto-Medium.ttf */,
+				B6D3C5D4286E0CED00A85076 /* FormattedText+FormattedString.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
