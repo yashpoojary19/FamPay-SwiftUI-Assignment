@@ -193,6 +193,10 @@ struct CardGroupView: View {
             }
             
         }
+        .onAppear {
+            // Appears in a closed state
+            viewModel.showCardOptions = false
+        }
         
         .onLongPressGesture {
             withAnimation {

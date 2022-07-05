@@ -12,6 +12,7 @@ import Combine
 class DataViewModel: ObservableObject {
     
     @Published var cards: [CardGroup] = [CardGroup]()
+    @Published var userSettings = UserSettings()
     var cancellables = Set<AnyCancellable>()
     
     
@@ -32,6 +33,8 @@ class DataViewModel: ObservableObject {
             return
         }
         
+        // automatcally on background thread
+        
         URLSession.shared.dataTaskPublisher(for: url)
             .receive(on: DispatchQueue.main)
             .tryMap(handleOutput)
@@ -49,7 +52,7 @@ class DataViewModel: ObservableObject {
                     
                 }
             } receiveValue: { [weak self] (returnedCardData) in
-                
+                // we don't want to keep it in memory
                 self?.cards = returnedCardData.cardGroups
                 
             }

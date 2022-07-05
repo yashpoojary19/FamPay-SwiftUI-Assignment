@@ -17,12 +17,12 @@ struct PullToRefresh: View {
     
     var body: some View {
         GeometryReader { geo in
-            if (geo.frame(in: .named(coordinateSpaceName)).midY > 50) {
+            if (geo.frame(in: .named(coordinateSpaceName)).midY > 100) {
                 Spacer()
                     .onAppear {
                         needRefresh = true
                     }
-            } else if (geo.frame(in: .named(coordinateSpaceName)).maxY < 10) {
+            } else if (geo.frame(in: .named(coordinateSpaceName)).maxY < 60) {
                 Spacer()
                     .onAppear {
                         if needRefresh {

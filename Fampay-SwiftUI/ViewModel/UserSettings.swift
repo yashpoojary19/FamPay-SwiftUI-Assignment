@@ -17,12 +17,12 @@ class UserSettings: ObservableObject {
             UserDefaults.standard.set(cardOptionState, forKey: "cardOptionSettings")
         }
     }
-    
+
     
     init() {
         self.cardOptionState = UserDefaults.standard.object(forKey: "cardOptionSettings") as? String ?? "none"
         
-        // Setting state to none for the card should be shown on the next app start
+//        // Setting state to none for the card should be shown on the next app start
         if cardOptionState == CardOptionState.remindLater.rawValue {
             cardOptionState = CardOptionState.none.rawValue
         }
